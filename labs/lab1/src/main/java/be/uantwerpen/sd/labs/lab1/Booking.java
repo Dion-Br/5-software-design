@@ -140,24 +140,25 @@ public class Booking {
             TODO: Find the cheapest hotel with availability across [startDate, endDate]; then book the entire range in that hotel and return its ID
             TIP: Read Hotel.java. Implement 'checkAvailability(long startDate, long endDate)'
         */
-        // Check all available hotels on the given dates
+        // Check all available hotels on the given dates and find the cheapest one
         int cheapestHotelID = -1;
         double cheapestPrice = Double.MAX_VALUE;
         for (Map.Entry<Integer, Hotel> entry : hotels.entrySet()) {
             int e_hotelID = entry.getKey();
             Hotel e_hotel = entry.getValue();
 
-            int check = e_hotel.checkAvailability(startDate, endDate);
-            if (check == -1) return -1;
+            int available = e_hotel.checkAvailability(startDate, endDate);
+            if (available == -1) return -1;
 
-            double pricePerRoom = e_hotel.getPricePerRoom();
-            if (pricePerRoom < cheapestPrice) {
+            // If hotel is cheaper save the hotelID
+            if (e_hotel.getPricePerRoom() < cheapestPrice) {
                 cheapestHotelID = e_hotelID;
-                cheapestPrice = pricePerRoom;
+                cheapestPrice = e_hotel.getPricePerRoom();
             }
         }
 
-        return cheapestHotelID;
+        // Book the cheapest hotel on the given dates
+        return bookRoomInHotel(startDate, endDate, cheapestHotelID);
 
     }
 }

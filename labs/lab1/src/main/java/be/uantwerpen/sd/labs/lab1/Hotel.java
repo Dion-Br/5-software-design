@@ -96,7 +96,9 @@ public class Hotel {
         for (Map.Entry<Integer, Room> e : this.rooms.entrySet()) {
             int roomID = e.getKey();
             Room room = e.getValue();
-            if(isRoomFree(room, startDate, endDate)) return roomID;
+            if(isRoomFree(room, startDate, endDate)){
+                return roomID;
+            }
         }
 
         return -1;
