@@ -93,7 +93,15 @@ public class Booking {
             TODO: Check availability, then book the returned room; propagate hotel.bookRoom result
             TIP: Read Hotel.java.
         */
-        return -2;
+        // Get the room with the given hotelID
+        Hotel hotelToBook = hotels.get(hotelID);
+        if (hotelToBook == null) return -1;
+
+        int roomID = hotelToBook.checkAvailability(date);
+        if (roomID == -1) return -1;
+
+        // Book the room
+        return hotelToBook.bookRoom(date, roomID);
     }
 
     /**
@@ -109,7 +117,13 @@ public class Booking {
             TODO: Check availability across [startDate, endDate], then book the returned room for the full range; propagate hotel.bookRoom result
             TIP: Read Hotel.java. Implement 'checkAvailability(long startDate, long endDate)'
         */
-        return -2;
+        Hotel hotelToBook = hotels.get(hotelID);
+        if (hotelToBook == null) return -1;
+
+        int roomID = hotelToBook.checkAvailability(startDate, endDate);
+        if (roomID == -1) return -1;
+
+        return hotelToBook.bookRoom(startDate, endDate, roomID);
     }
 
 
@@ -126,6 +140,24 @@ public class Booking {
             TODO: Find the cheapest hotel with availability across [startDate, endDate]; then book the entire range in that hotel and return its ID
             TIP: Read Hotel.java. Implement 'checkAvailability(long startDate, long endDate)'
         */
-        return -2;
+        // Check all available hotels on the given dates
+        int cheapestHotelID = -1;
+        double cheapestPrice = Double.MAX_VALUE;
+        for (Map.Entry<Integer, Hotel> entry : hotels.entrySet()) {
+            int e_hotelID = entry.getKey();
+            Hotel e_hotel = entry.getValue();
+
+            int check = e_hotel.checkAvailability(startDate, endDate);
+            if (check == -1) return -1;
+
+            double pricePerRoom = e_hotel.getPricePerRoom();
+            if (pricePerRoom < cheapestPrice) {
+                cheapestHotelID = e_hotelID;
+                cheapestPrice = pricePerRoom;
+            }
+        }
+
+        return cheapestHotelID;
+
     }
 }

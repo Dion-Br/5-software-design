@@ -89,7 +89,17 @@ public class Hotel {
             TODO: Check availability across [startDate, endDate].
             TIP: Read this entire file first.
         */
-        return -2;
+        // Check if dates are valid
+        if(!isValidDateRange(startDate, endDate)) return -1;
+
+        // Loop every room for availability in the range
+        for (Map.Entry<Integer, Room> e : this.rooms.entrySet()) {
+            int roomID = e.getKey();
+            Room room = e.getValue();
+            if(isRoomFree(room, startDate, endDate)) return roomID;
+        }
+
+        return -1;
     }
 
     /**
