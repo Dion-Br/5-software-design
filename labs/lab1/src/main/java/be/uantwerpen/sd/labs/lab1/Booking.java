@@ -143,12 +143,14 @@ public class Booking {
         // Check all available hotels on the given dates and find the cheapest one
         int cheapestHotelID = -1;
         double cheapestPrice = Double.MAX_VALUE;
+
         for (Map.Entry<Integer, Hotel> entry : hotels.entrySet()) {
             int e_hotelID = entry.getKey();
             Hotel e_hotel = entry.getValue();
 
+            // Skip the hotel if its not available
             int available = e_hotel.checkAvailability(startDate, endDate);
-            if (available == -1) return -1;
+            if (available == -1) continue;
 
             // If hotel is cheaper save the hotelID
             if (e_hotel.getPricePerRoom() < cheapestPrice) {
@@ -157,8 +159,8 @@ public class Booking {
             }
         }
 
-        // Book the cheapest hotel on the given dates
-        return bookRoomInHotel(startDate, endDate, cheapestHotelID);
-
+        // Book the cheapest hotel on the given dates, if this fails return -1 else return hotelID
+        if(cheapestHotelID != -1 && bookRoomInHotel(startDate, endDate, cheapestHotelID) == -1) return -1;
+        return cheapestHotelID;
     }
 }
