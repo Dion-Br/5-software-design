@@ -6,5 +6,16 @@ Methods you will implement:
   - double calcCircumference()
   - double calcArea()
 */
-public class EquilateralTriangle {
+public class EquilateralTriangle extends Shape {
+    public EquilateralTriangle(double size, String name) {
+        super(size,name);
+    }
+    @Override
+    public double calcCircumference() {
+        return 3*size;
+    }
+    @Override
+    public double calcArea() {
+        return (Math.sqrt(3) / 4) * size * size;
+    }
 }

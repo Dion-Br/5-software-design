@@ -15,6 +15,13 @@ public class Main {
             TODO: Create a UniversalRemote and add multiple devices (TV, Radio, CDPlayer). Call lowerVolume() and riseVolume() to verify polymorphism.
             TIP: Upcast to VolumeDevice when storing devices; verify that methods dispatch correctly.
         */
-        return;
+        UniversalRemote UR = new UniversalRemote();
+        UR.addDevice(new TV());
+        UR.addDevice(new Radio());
+        UR.addDevice(new CDPlayer());
+
+        UR.riseVolume();
+        UR.riseVolume();
+        UR.lowerVolume();
     }
 }
