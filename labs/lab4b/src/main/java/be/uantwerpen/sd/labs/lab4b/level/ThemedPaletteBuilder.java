@@ -16,7 +16,7 @@ Methods you will implement:
   - Palette build()
 TIP: You can get the correct color from the theme by using c(theme.get(string)). Look at the bottom of lab4b/src/main/resources/config.yaml for specific terminology [e.g. c(theme.get(background))]
 */
-public final class ThemedPaletteBuilder {
+public final class ThemedPaletteBuilder extends PaletteBuilder {
     private Color background, floor, wall, target, player, box;
     private final Map<String, String> theme;
 
@@ -27,4 +27,40 @@ public final class ThemedPaletteBuilder {
     private static Color c(String hex) {
         return Color.web(hex);
     }
+
+    @Override
+    public void buildBackground() {
+        this.background = c(theme.get("background"));
+    }
+
+    @Override
+    public void buildFloor() {
+        this.floor = c(theme.get("floor"));
+    }
+
+    @Override
+    public void buildWall() {
+        this.wall = c(theme.get("wall"));
+    }
+
+    @Override
+    public void buildTarget() {
+        this.target = c(theme.get("target"));
+    }
+
+    @Override
+    public void buildPlayer() {
+        this.player = c(theme.get("player"));
+    }
+
+    @Override
+    public void buildBox() {
+        this.box = c(theme.get("box"));
+    }
+
+    @Override
+    public Palette build() {
+        return new Palette(background, floor, wall, target, player, box);
+    }
+
 }

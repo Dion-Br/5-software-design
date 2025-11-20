@@ -7,19 +7,22 @@ Methods you will implement:
   - String commonName()
 TIP: Ensure you correctly implement/inherit the correct class.
 */
-public class Pine {
+public class Pine implements  Plant{
+    @Override
     public String commonName() {
         /*
             TODO: Return the common name of this plant.
             TIP: E.g., \"Oak\" for Oak.
         */
-        return null;
+        return "Pine";
     }
 
+    @Override
     public double spacingMeters() {
         return 2.5;
     }
 
+    @Override
     public String soilPreference() {
         return "sandy";
     }
