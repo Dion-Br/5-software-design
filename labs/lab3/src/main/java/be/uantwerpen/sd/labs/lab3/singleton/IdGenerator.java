@@ -9,7 +9,19 @@ Methods you will implement:
 TIP: Make sure to define the constructor and variables correctly. A counter field; nextId() returns the next value.
 */
 public class IdGenerator {
+    private static IdGenerator instance;
     private long counter = 0;
+
+    private IdGenerator() {
+        
+    }
+
+    public static synchronized IdGenerator getInstance() {
+        if (instance == null) {
+            instance = new IdGenerator();
+        }
+        return instance;
+    }
 
     public long nextId() {
         return ++counter;

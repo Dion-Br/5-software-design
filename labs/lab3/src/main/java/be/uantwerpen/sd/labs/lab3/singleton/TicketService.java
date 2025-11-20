@@ -6,6 +6,11 @@ public class TicketService {
             TODO: Create a Ticket with a new ID from the Singleton generator.
             TIP: Don't use `new IdGenerator`.
         */
-        return null;
+        // Getting the generator .. if it already exists we get the old one
+        IdGenerator generator = IdGenerator.getInstance();
+        // Id gets the next id from the generator
+        long id = generator.nextId();
+        // Returnign both values in a ticket
+        return new Ticket(id, title);
     }
 }
