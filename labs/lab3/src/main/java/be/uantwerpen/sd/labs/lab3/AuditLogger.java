@@ -1,4 +1,4 @@
-package be.uantwerpen.sd.labs.lab3.inventory;
+package be.uantwerpen.sd.labs.lab3;
 import be.uantwerpen.sd.labs.lab3.observer.Observer;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
