@@ -1,7 +1,7 @@
 package be.uantwerpen.sd.labs.lab3.singleton;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api. Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SingletonUnitTest {
 
@@ -27,7 +27,7 @@ class SingletonUnitTest {
         ticket.setTitle("Updated title");
 
         assertEquals(99L, ticket.getId());
-        assertEquals("Updated title", ticket. getTitle());
+        assertEquals("Updated title", ticket.getTitle());
     }
 
     @Test
@@ -41,7 +41,7 @@ class SingletonUnitTest {
     @Test
     void ticketServiceCreatesTicketWithTitle() {
         TicketService service = new TicketService();
-        Ticket ticket = service. create("Test issue");
+        Ticket ticket = service.create("Test issue");
 
         assertNotNull(ticket);
         assertEquals("Test issue", ticket.getTitle());
